@@ -11,7 +11,7 @@ var toggleView = function () {
 (function () {
 
     var portacontainer = document.createElement('DIV');
-    portacontainer.setAttribute('style', 'position:absolute; bottom:50px; left:0; width:360px; height:600px; overflow:hidden;');
+    portacontainer.setAttribute('style', 'position:absolute; bottom:50px; left:20px; width:360px; height:600px; overflow:hidden;');
 
     var porta = document.createElement('DIV');
     porta.setAttribute('style', 'position:absolute; bottom:-555px; left:0; border: 1px solid #000; width:360px; background-color:#303030; color:#fff; font-family: arial; height:600px;');
@@ -27,14 +27,13 @@ var toggleView = function () {
     <li style="float:left;position: relative;left: -25px; top:11px; font-weight:700;">APP-XPERIENCE</li>
     <li style="float:left; position: relative;top:6px; left:90px; z-index:1;"><img src="http://switchmagic.com:4111/assets/images/desktop/crown.svg" style="width:25px;"></li>
     <li style="float:left; position: relative;top:5px; left: 100px;"><i _ngcontent-c2="" class="fa fa-play-circle play-icon" style="font-size: 28px;"></i></li>
-    
     </ul>`;
     porta.appendChild(portaheader);
     // countdown
-    var timerTitle = ' E3 2018 Showcase';
-    var eventdatetime = 'jun 11,2018 17:00:00 GMT-08:00';
-    var eventdatedisplay = '<span style="opacity:.5;">June 11th, 2018 9PM (EDT)</span>';
-    var playlistid = 'PLspvJZlgucNaU1rSZzVGByIDtjZNXTlvi';
+    var timerTitle = ' E3 2018 Awesomeness';
+    var eventdatetime = 'jul 11,2018 17:00:00 GMT-08:00';
+    var eventdatedisplay = '<span style="opacity:.5;">July 11th, 2018 9PM (EDT)</span>';
+    var playlistid = 'PLKmxlt7z7bU_9U6Ko0q17K9h7ZQJpZ2xx';
     var deadline = new Date(eventdatetime);
     var now = new Date().getTime();
     var t = deadline - now;
@@ -44,7 +43,7 @@ var toggleView = function () {
     var seconds = Math.floor((t % (1000 * 60)) / 1000);
     var countdown = document.createElement('DIV');
     countdown.id = "countdown";
-    countdown.setAttribute('style', 'position:relative; text-align:center; width:50%; margin:10px auto;');
+    countdown.setAttribute('style', 'position:relative; text-align:center; width:60%; margin:10px auto;');
     var countdownheader = document.createElement('DIV');
     countdownheader.id = "countdownHeader";
     countdownheader.setAttribute('style', 'position:relative; width:100%; margin:10px auto; text-align:left; padding-left:10px;');
@@ -83,7 +82,7 @@ var toggleView = function () {
     // update timer
     var adder = 0;
     function updateTimer() {
-        var deadline = new Date("jun 11,2018 17:00:00 GMT-08:00");
+        var deadline = new Date(eventdatetime);
         var now = new Date().getTime();
         var t = deadline - now;
         var days = Math.floor(t / (1000 * 60 * 60 * 24));
@@ -112,7 +111,7 @@ var toggleView = function () {
             }
         };
         // xhttp.open("GET", "https://www.googleapis.com/youtube/v3/videos?id=Mr8fVT_Ds4Q,2e-yAATMjBI" + "&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&fields=items(snippet(thumbnails))&part=snippet", true);
-        xhttp.open("GET", "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=" + playlistID + "&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&part=snippet", true);
+        xhttp.open("GET", "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=" + playlistID + "&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&part=snippet&maxResults=50", true);
         xhttp.send();
     }
 
@@ -152,6 +151,18 @@ var toggleView = function () {
         playlist = data.items;
         playlist.forEach(addPlayList);
     }
+    // chat
+    var chatcontainer = document.createElement('DIV');
+    chatcontainer.id = 'chatContainer';
+    chatcontainer.setAttribute('style','display:none; position:absolute;');
+    chatcontainer.innerHTML = "CHAT";
+    
+    
+    // add chat to body
+    porta.appendChild(chatcontainer);
+    portacontainer.appendChild(porta);
+    document.body.appendChild(portacontainer);
+
     // add footer
     var footer = document.createElement('DIV');
     footer.id = 'footer';
