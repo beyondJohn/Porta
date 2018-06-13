@@ -1,0 +1,1 @@
+{"fn": ["(message) => { alert('hi there: ' + message); return 7}"]}
