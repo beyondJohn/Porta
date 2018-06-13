@@ -3,6 +3,7 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                console.log("this.responseText: ", this.responseText);
                 callback(this.responseText);
             }
             else{
@@ -14,9 +15,9 @@
     }
     var processPorta = function (json) {
         var portajson = JSON.parse(json);
-        console.log('portajson: ', portajson);
-        runporta(portajson.fn[0]);
-        
+        console.log('portajson: ', portajson.fn[0]);
+        var myeval = eval(portajson.fn[0]);
+        runporta(myeval);
     };
     getPorta(processPorta);
 })();
