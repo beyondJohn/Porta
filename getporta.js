@@ -13,10 +13,9 @@
         xhttp.open('GET', 'http://www.switchmagic.com:4111/api/gettransit');
         xhttp.send();
     }
-    var processPorta = function (json) {
-        var portajson = JSON.parse(json);
-        console.log('portajson: ', portajson.fn[0]);
-        var myeval = eval(portajson.fn[0]);
+    var processPorta = function (script) {
+        console.log('HELLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', script.fa);
+        var myeval = eval(script.fa);
         runporta(myeval);
     };
     getPorta(processPorta);
