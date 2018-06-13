@@ -15,6 +15,8 @@
     var processPorta = function (json) {
         var portajson = JSON.parse(json);
         console.log('portajson: ', portajson);
+        runporta(portajson.fn[0]);
+        
     };
     getPorta(processPorta);
 })();
