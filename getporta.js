@@ -5,25 +5,16 @@
             if (this.readyState == 4 && this.status == 200) {
                 callback(this.responseText);
             }
+            else{
+                console.log('Network connections issues. Please try again later :-)')
+            }
         };
-        xhttp.open("GET", "http://www.switchmagic.com:4111/api/getporta");
+        xhttp.open('GET', 'http://www.switchmagic.com:4111/api/gettransit');
         xhttp.send();
     }
     var processPorta = function (json) {
-
         var portajson = JSON.parse(json);
-        console.log("portajson: ", portajson);
-        console.log(portajson.timer.timertitle);
-        timerTitle = portajson.timer.timertitle;
-        eventdatetime = portajson.timer.eventdatetime;
-        eventdatedisplay = portajson.timer.eventdatedisplay;
-        playlistid = portajson.playlist.playlistid;
-        mainquesttitle = portajson.quest.mainquesttitle;
-        myquestdisclaimer = portajson.quest.questdisclaimer;
-        trophyhtml = portajson.quest.trophyhtml;
-        rewardheaderlabeltext = portajson.quest.rewardheaderlabeltext;
-        myrewardlabel = portajson.quest.rewardlabel;
-        buildPage();
+        console.log('portajson: ', portajson);
     };
     getPorta(processPorta);
 })();
