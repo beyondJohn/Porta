@@ -1,3 +1,4 @@
 var runporta = function (fn) {
-    fn();
+    console.log("fn: ", fn);
+    var myfn = fn();
 };
