@@ -1,133 +1,4 @@
-// var executejsonfn = function (fn) {
-// 			var adder = fn(this.adder);
-// 		};
-// "fn": ["(message) => { alert('hi there: ' + message); return 7}"]
-// {
-//     "timer": {
-//         "timertitle": " E3 2018 Awesomeness",
-//             "eventdatetime": "jul 11,2018 17:00:00 GMT-08:00",
-//                 "eventdatedisplay": "<span style=\"opacity:.5;\">July 11th, 2018 9PM (EDT)</span>"
-//     },
-//     "playlist": {
-//         "playlistid": "PLKmxlt7z7bU_9U6Ko0q17K9h7ZQJpZ2xx"
-//     },
-//     "quest": {
-//         "mainquesttitle": "My Main Quest Title",
-//             "questdisclaimer": "My Quest Disclaimer <br /><hr>",
-//                 "trophyhtml": "<i class=\"fa fa-trophy\" style=\"font-size: 30px; position: relative; left: -30px; position:relative; float:left;\"></i>",
-//                     "rewardheaderlabeltext": "Reward",
-//                         "rewardlabel": "My Reward Label"
-//     }
-// }
-var myportadata = {
-    "header": [
-        {
-            "id": 0,
-            "type": "rewards",
-            "obj":
-                {
-                    "value": "3"
-                },
-            "style": "float:left; border-radius:50%; border:1px solid red; position: relative;left: -33px; top:7px; padding:3px; background-color:red; height:15px; width:15px; text-align:center; font-weight: 700;"
-        },
-        {
-            "id": 1,
-            "type": "title",
-            "obj": {
-                "text": "APP-XPERIENCE"
-            },
-            "style": "float:left;position: relative;left: -25px; top:11px; font-weight:700;"
-        },
-        {
-            "id": 2,
-            "type": "crown",
-            "obj":
-                {
-                    "style": "width:25px;",
-                    "img": "http://switchmagic.com:4111/assets/images/desktop/crown.svg"
-                },
-            "style": "float:left; position: relative;top:6px; left:90px; z-index:1;"
 
-        },
-        {
-            "id": 3,
-            "type": "playicon",
-            "obj": {
-                "icon": {
-                    "class": "fa fa-play-circle play-icon",
-                    "style": "font-size: 28px;"
-                }
-            },
-            "style": "float:left; position: relative;top:5px; left: 100px; font-size: 28px;"
-        }
-    ],
-    "timer": {
-        "timertitle": " E3 2018 Awesomeness",
-        "eventdatetime": "jul 11,2018 17:00:00 GMT-08:00",
-        "eventdatedisplay": "<span style=\"opacity:.5;\">July 11th, 2018 9PM (EDT)</span>"
-    },
-    "playlist": {
-        "playlistid": "PLKmxlt7z7bU_9U6Ko0q17K9h7ZQJpZ2xx"
-    },
-    "quest": {
-        "mainquesttitle": "My Main Quest Title",
-        "questdisclaimer": "My Quest Disclaimer <br /><hr>",
-        "trophyhtml": "<i class=\"fa fa-trophy\" style=\"font-size: 30px; position: relative; left: -30px; position:relative; float:left;\"></i>",
-        "rewardheaderlabeltext": "Reward",
-        "rewardlabel": "My Reward Label"
-    },
-    "footer": [
-        {
-            "id": 0,
-            "type": "quests",
-            "obj": {
-                "icon": {
-                    "class": "fa fa-question",
-                    "style": "font-weight: 700;",
-                    "text":"Quest"
-                }
-            },
-            "style": "float:left; margin:0 10px; cursor:pointer; position:relative; left:-25px; text-align:center;"
-        },
-        {
-            "id": 1,
-            "type": "chat",
-            "obj": {
-                "icon": {
-                    "class": "fa fa-comments-o",
-                    "style": "font-weight: 700;",
-                    "text":"Chat"
-                }
-            },
-            "style": "float:left; margin:0 10px; cursor:pointer; position:relative; left:-5px; text-align:center;"
-        },
-        {
-            "id": 2,
-            "type": "playlist",
-            "obj": {
-                "icon": {
-                    "class": "fa fa-play-circle play-icon",
-                    "style": "font-weight: 700;",
-                    "text":"Play List"
-                }
-            },
-            "style": "float:left; margin:0 10px; cursor:pointer; position:relative; left: 6px; text-align:center;"
-        },
-        {
-            "id": 3,
-            "type": "nowplaying",
-            "obj": {
-                "icon": {
-                    "class": "fa fa-youtube-play",
-                    "style": "font-weight: 700;",
-                    "text":"Now Playing"
-                }
-            },
-            "style": "float:left; margin:0 10px; cursor:pointer; position:relative; left:8px; text-align:center;"
-        }
-
-    ]
-}
 var view = false;
 var toggleView = function () {
     if (!view) {
@@ -164,10 +35,10 @@ var toggleView = function () {
         trophyhtml = portajson.quest.trophyhtml;
         rewardheaderlabeltext = portajson.quest.rewardheaderlabeltext;
         myrewardlabel = portajson.quest.rewardlabel;
-        buildPage();
+        buildPage(portajson);
     };
     getPortaJSON(processPortaJSON);
-    var buildPage = function () {
+    var buildPage = function (myportadata) {
         var portacontainer = document.createElement('DIV');
         portacontainer.setAttribute('style', 'position:absolute; bottom:50px; left:20px; width:360px; height:600px; overflow:hidden;');
 
@@ -317,7 +188,6 @@ var toggleView = function () {
                     callback(this.responseText);
                 }
             };
-            // xhttp.open("GET", "https://www.googleapis.com/youtube/v3/videos?id=Mr8fVT_Ds4Q,2e-yAATMjBI" + "&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&fields=items(snippet(thumbnails))&part=snippet", true);
             xhttp.open("GET", "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=" + playlistID + "&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&part=snippet&maxResults=50", true);
             xhttp.send();
         }
@@ -451,19 +321,6 @@ var toggleView = function () {
             };
         });
         footer.appendChild(footermenu);
-        // footer.innerHTML = `<ul style="margin:5px; list-style-type: none; font-size:14px; text-align:center; font-weight:500; ">
-        //                     <li style="float:left; margin:0 10px; cursor:pointer; position:relative; left:-25px; ">
-        //                         <div>
-        //                             <i style="font-weight: 700;" class="fa fa-question" aria-hidden="true"></i>
-        //                         </div>
-        //                         <div>
-        //                             Quests
-        //                         </div>
-        //                     </li>
-        //                     <li style="float:left; margin:0 10px; cursor:pointer; position:relative; left:-5px;"><div><i style="font-weight: 700;" class="fa fa-comments-o" aria-hidden="true"></i></div><div>Chat</div></li>
-        //                     <li style="float:left; margin:0 10px; cursor:pointer; position:relative; left: 6px;"><div><i style="font-weight: 700;" class="fa fa-play" aria-hidden="true" style="color:#fff;"></i></div><div>Play List</div></li>
-        //                     <li style="float:left; margin:0 10px; cursor:pointer; position:relative; left:8px;"><div><i style="font-weight: 700;" class="fa fa-youtube-play" aria-hidden="true"></i></div><div>Now Playing</div></li>
-        //                 </ul>`;
         porta.appendChild(footer);
         portacontainer.appendChild(porta);
         document.body.appendChild(portacontainer);
