@@ -29,7 +29,7 @@ var toggleView = function () {
         timerTitle = portajson.timer.timertitle;
         eventdatetime = portajson.timer.eventdatetime;
         eventdatedisplay = portajson.timer.eventdatedisplay;
-        playlistid = portajson.playlist.playlistid;
+        playlistid = 'PLol_ykYs3OQ4guC3y_DE_BExqGnHH2jd_'; //portajson.playlist.playlistid;
         mainquesttitle = portajson.quest.mainquesttitle;
         myquestdisclaimer = portajson.quest.questdisclaimer;
         trophyhtml = portajson.quest.trophyhtml;
@@ -61,7 +61,7 @@ var toggleView = function () {
             for (var i = 0; i < headerlistitems.length; i++) {
                 if (item.id === i) {
                     var headerlistitem = document.createElement('LI');
-                    headerlistitem.id = "headerlistitem" + adderheaderlistitem;
+                    headerlistitem.id = 'headerlistitem' + adderheaderlistitem;
                     var item = headerlistitems[i];
                     if (item.type === 'rewards') {
                         headerlistitem.setAttribute('style', item.style);
@@ -92,24 +92,7 @@ var toggleView = function () {
         });
         portaheader.appendChild(headermenu);
         porta.appendChild(portaheader);
-        var portajson = {
-            timer: {
-                timertitle: ' E3 2018 Awesomeness',
-                eventdatetime: 'jul 11,2018 17:00:00 GMT-08:00',
-                eventdatedisplay: '<span style="opacity:.5;">July 11th, 2018 9PM (EDT)</span>'
-            },
-            playlist: {
-                playlistid: 'PLKmxlt7z7bU_9U6Ko0q17K9h7ZQJpZ2xx',
-            },
-            quest: {
-                mainquesttitle: 'My Main Quest Title',
-                questdisclaimer: 'My Quest Disclaimer <br /><hr>',
-                trophyhtml: '<i class="fa fa-trophy" style="font-size: 30px; position: relative; left: -30px; position:relative; float:left;"></i>',
-                rewardheaderlabeltext: 'Reward',
-                rewardlabel: 'My Reward Label'
-            }
 
-        }
         // countdown
 
         var deadline = new Date(eventdatetime);
@@ -120,10 +103,10 @@ var toggleView = function () {
         var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((t % (1000 * 60)) / 1000);
         var countdown = document.createElement('DIV');
-        countdown.id = "countdown";
+        countdown.id = 'countdown';
         countdown.setAttribute('style', 'position:relative; text-align:center; width:60%; margin:10px auto;');
         var countdownheader = document.createElement('DIV');
-        countdownheader.id = "countdownHeader";
+        countdownheader.id = 'countdownHeader';
         countdownheader.setAttribute('style', 'position:relative; width:100%; margin:10px auto; text-align:left; padding-left:10px;');
         var clock = document.createElement('i');
         clock.setAttribute('class', 'fa fa-clock-o fa-lg');
@@ -140,11 +123,19 @@ var toggleView = function () {
         timerholder.setAttribute('style', 'position:relative; padding:15px; background-color:#000; font-size: larger;');
         timerholder.id = 'timerHolder';
         var ddays, dhours, dminutes, dseconds;
-        days !== 0 ? ddays = days + '<span style="opacity:.5;">D </span>' : ddays = '';
-        hours !== 0 ? dhours = hours + '<span style="opacity:.5;">H </span>' : dhours = '';
-        minutes !== 0 ? dminutes = minutes + '<span style="opacity:.5;">M </span>' : dminutes = '';
-        seconds !== 0 ? dseconds = seconds + '<span style="opacity:.5;">S </span>' : dseconds = '';
-        var counttimer = document.createTextNode(ddays + dhours + dminutes + dseconds);
+        var spandays = document.createElement('SPAN');
+        spandays.setAttribute('style', 'opacity:.5;');
+        days !== 0 ? spandays.innerHTML = days + 'D ' : spandays.innerHTML = '';
+        var spanhours = document.createElement('SPAN');
+        spanhours.setAttribute('style', 'opacity:.5;');
+        hours !== 0 ? spanhours.innerHTML = hours + 'H ' : spanhours.innerHTML = '';
+        var spanminutes = document.createElement('SPAN');
+        spanminutes.setAttribute('style', 'opacity:.5;');
+        minutes !== 0 ? spanminutes.innerHTML = minutes + 'M ' : spanminutes.innerHTML = '';
+        var spanseconds = document.createElement('SPAN');
+        spanseconds.setAttribute('style', 'opacity:.5;');
+        seconds !== 0 ? spanseconds.innerHTML = seconds + 'S ' : spanseconds.innerHTML = '';
+        var counttimer = document.createTextNode(spandays + spanhours + spanminutes + spanseconds);
         timerholder.appendChild(counttimer);
         countdown.appendChild(timerholder);
         var eventdate = document.createElement('DIV');
@@ -168,11 +159,40 @@ var toggleView = function () {
             var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((t % (1000 * 60)) / 1000);
             var ddays, dhours, dminutes, dseconds;
-            days !== 0 ? ddays = days + '<span style="opacity:.5;">D </span>' : ddays = '';
-            hours !== 0 ? dhours = hours + '<span style="opacity:.5;">H </span>' : dhours = '';
-            minutes !== 0 ? dminutes = minutes + '<span style="opacity:.5;">M </span>' : dminutes = '';
-            seconds !== 0 ? dseconds = seconds + '<span style="opacity:.5;">S </span>' : dseconds = '';
-            document.getElementById('timerHolder').innerHTML = ddays + dhours + dminutes + dseconds;
+
+            var spanday = document.createElement('SPAN');
+            days !== 0 ? spanday.innerHTML = days : spanday.innerHTML = '';
+            var spandays = document.createElement('SPAN');
+            spandays.setAttribute('style', 'opacity:.5;');
+            days !== 0 ? spandays.innerHTML = 'D ' : spandays.innerHTML = '';
+
+            var spanhour = document.createElement('SPAN');
+            hours !== 0 ? spanhour.innerHTML = hours : spanhour.innerHTML = '';
+            var spanhours = document.createElement('SPAN');
+            spanhours.setAttribute('style', 'opacity:.5;');
+            hours !== 0 ? spanhours.innerHTML = 'H ' : spanhours.innerHTML = '';
+
+            var spanminute = document.createElement('SPAN');
+            minutes !== 0 ? spanminute.innerHTML = minutes : spanminute.innerHTML = '';
+            var spanminutes = document.createElement('SPAN');
+            spanminutes.setAttribute('style', 'opacity:.5;');
+            minutes !== 0 ? spanminutes.innerHTML = 'M ' : spanminutes.innerHTML = '';
+
+            var spansecond = document.createElement('SPAN');
+            seconds !== 0 ? spansecond.innerHTML = seconds : spansecond.innerHTML = '';
+            var spanseconds = document.createElement('SPAN');
+            spanseconds.setAttribute('style', 'opacity:.5;');
+            seconds !== 0 ? spanseconds.innerHTML = 'S ' : spanseconds.innerHTML = '';
+
+            document.getElementById('timerHolder').innerHTML = '';
+            document.getElementById('timerHolder').appendChild(spanday);
+            document.getElementById('timerHolder').appendChild(spandays);
+            document.getElementById('timerHolder').appendChild(spanhour);
+            document.getElementById('timerHolder').appendChild(spanhours);
+            document.getElementById('timerHolder').appendChild(spanminute);
+            document.getElementById('timerHolder').appendChild(spanminutes);
+            document.getElementById('timerHolder').appendChild(spansecond);
+            document.getElementById('timerHolder').appendChild(spanseconds);// = spandays + spanhours + spanminutes + spanseconds;
             adder++;
             setTimeout(updateTimer, 1000);
         }
@@ -188,7 +208,7 @@ var toggleView = function () {
                     callback(this.responseText);
                 }
             };
-            xhttp.open("GET", "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=" + playlistID + "&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&part=snippet&maxResults=50", true);
+            xhttp.open('GET', 'https://www.googleapis.com/youtube/v3/playlistItems?playlistId=' + playlistID + '&key=AIzaSyAwvSsb58T7r_Q8mrRPXqhdd8ZxD1XbBTE&part=snippet&maxResults=50', true);
             xhttp.send();
         }
 
@@ -209,10 +229,16 @@ var toggleView = function () {
             var playlistitem = document.createElement('DIV');
             playlistitem.id = 'playListItem' + adderplaylist;
             playlistitem.setAttribute('style', 'width:100%; height:60px; cursor:pointer; overflow:hidden;');
-            playlistitem.innerHTML = '<img src="' + item.snippet.thumbnails.medium.url + '" style="height:60px; background-color:#303030;">';
+            var playlistimg = document.createElement('IMG');
+            playlistimg.setAttribute('style', 'height:60px; background-color:#303030;');
+            playlistimg.setAttribute('src', item.snippet.thumbnails.medium.url)
+            playlistitem.appendChild(playlistimg);
             playlistdoc.appendChild(playlistitem);
             var playlisttitle = document.createElement('DIV');
-            playlisttitle.innerHTML = '<span style="position:absolute; right:0; top:0; width:65%; padding-top:5px; overflow:hidden;">' + item.snippet.title + '</span>';
+            var playlisttitlespan = document.createElement('SPAN');
+            playlisttitlespan.setAttribute('style', 'position:absolute; right:0; top:0; width:65%; padding-top:5px; overflow:hidden;');
+            playlisttitlespan.innerHTML = item.snippet.title;
+            playlisttitle.appendChild(playlisttitlespan);
             playlistdoc.appendChild(playlisttitle);
             playlistcontainer.appendChild(playlistdoc);
             porta.appendChild(playlistcontainer);
@@ -231,7 +257,7 @@ var toggleView = function () {
         var chatcontainer = document.createElement('DIV');
         chatcontainer.id = 'chatContainer';
         chatcontainer.setAttribute('style', 'display:none; position:absolute;');
-        chatcontainer.innerHTML = "CHAT";
+        chatcontainer.innerHTML = 'CHAT';
         // add chat to porta
         porta.appendChild(chatcontainer);
         portacontainer.appendChild(porta);
@@ -301,20 +327,19 @@ var toggleView = function () {
             for (var i = 0; i < footerlistitems.length; i++) {
                 if (item.id === i) {
                     var footerlistitem = document.createElement('LI');
-                    footerlistitem.id = "footerlistitem" + adderfooterlistitem;
+                    footerlistitem.id = 'footerlistitem' + adderfooterlistitem;
                     var item = footerlistitems[i];
-                    
-                        footerlistitem.setAttribute('style', item.style);
-                        var divicon = document.createElement('DIV');
-                        var icon = document.createElement('i');
-                        icon.setAttribute('class', item.obj.icon.class);
-                        icon.setAttribute('style', item.obj.icon.style);
-                        divicon.appendChild(icon);
-                        footerlistitem.appendChild(divicon);
-                        var divtext = document.createElement('DIV');
-                        divtext.innerHTML = item.obj.icon.text;
-                        footerlistitem.appendChild(divtext);
-                    
+                    footerlistitem.setAttribute('style', item.style);
+                    var divicon = document.createElement('DIV');
+                    var icon = document.createElement('i');
+                    icon.setAttribute('class', item.obj.icon.class);
+                    icon.setAttribute('style', item.obj.icon.style);
+                    divicon.appendChild(icon);
+                    footerlistitem.appendChild(divicon);
+                    var divtext = document.createElement('DIV');
+                    divtext.innerHTML = item.obj.icon.text;
+                    footerlistitem.appendChild(divtext);
+
                     footermenu.appendChild(footerlistitem);
                     adderfooterlistitem++;
                 }
