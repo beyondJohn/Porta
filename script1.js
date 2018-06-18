@@ -317,17 +317,42 @@ var toggleView = function () {
         var footer = document.createElement('DIV');
         footer.id = 'footer';
         footer.setAttribute('style', 'width:100%; height:40px; background-color:#000; color:#fff; position:absolute; bottom:0;');
-        // recreate footer UL
+
         var adderfooterlistitem = 0;
         var footermenu = document.createElement('UL');
         footermenu.id = 'footermenu';
         footermenu.setAttribute('style', 'margin:5px; list-style-type: none;');
         var footerlistitems = myportadata.footer;
+        var arrayfooter = [];
+        var clickfooter = function (type) {
+            arrayfooter.forEach(function (footer) {
+                if (type === 'playlist') {
+
+                    var currentstyle = document.getElementById('questContainer').style.setProperty('display','none');
+                    var currentstyle = document.getElementById('playlistContainer').style.setProperty('display','block');
+                    // type === footer ? document.getElementById(type).a
+                    console.log(type);
+                    console.log(currentstyle);
+                    //console.log(document.getElementById(type).style);
+                }
+                else if (type === 'quests') {
+
+                    var currentstyle = document.getElementById('questContainer').style.setProperty('display','block');
+                    var currentstyle = document.getElementById('playlistContainer').style.setProperty('display','none');
+                    // type === footer ? document.getElementById(type).a
+                    console.log(type);
+                    console.log(currentstyle);
+                    //console.log(document.getElementById(type).style);
+                }
+            })
+        };
         footerlistitems.forEach((item) => {
             for (var i = 0; i < footerlistitems.length; i++) {
                 if (item.id === i) {
+                    arrayfooter.push(item.type);
                     var footerlistitem = document.createElement('LI');
-                    footerlistitem.id = 'footerlistitem' + adderfooterlistitem;
+                    footerlistitem.id = item.type;
+                    footerlistitem.addEventListener('click', function () { clickfooter(item.type) });
                     var item = footerlistitems[i];
                     footerlistitem.setAttribute('style', item.style);
                     var divicon = document.createElement('DIV');
